@@ -1,0 +1,1120 @@
+/* =========================================================
+   UNINASSAU — Saúde em Foco
+   Folha de estilos principal
+
+   Índice:
+   1. Variáveis (cores, fontes, medidas)
+   2. Reset e base
+   3. Componentes reutilizáveis (botões, ícones, títulos)
+   4. Header / Navbar
+   5. Hero
+   6. Seção "Por que ter uma vida saudável?"
+   7. Seção Equipe
+   8. Quiz
+   9. Footer
+   10. Animações de entrada
+   11. Responsividade (Media Queries)
+   ========================================================= */
+
+
+/* =========================================================
+   1. VARIÁVEIS
+   Para mudar as cores do site inteiro, edite só este bloco.
+   ========================================================= */
+:root {
+  /* Azuis (identidade UNINASSAU) */
+  --navy: #0b2a5b;
+  --navy-900: #071c40;
+  --blue: #1d6fd8;
+  --blue-soft: #e8f1fd;
+
+  /* Verdes (saúde) */
+  --green: #0f7a55;
+  --green-dark: #0b6244;
+  --mint: #3ecf9b;
+  --mint-soft: #e6f7f0;
+
+  /* Dourado (pequenos detalhes) */
+  --gold: #f2b632;
+  --gold-soft: #fff3d1;
+
+  /* Neutros */
+  --ink: #1a2740;
+  --muted: #55657d;
+  --line: #e3eaf2;
+  --white: #ffffff;
+  --bg-soft: #f5f9fc;
+
+  /* Cores dos cards de benefícios */
+  --food: #2f9e5b;   --food-soft: #eaf7ee;
+  --move: #2a8f9e;   --move-soft: #e7f5f7;
+  --sleep: #5b6bd6;  --sleep-soft: #ecedfb;
+  --mind: #9b4f9b;   --mind-soft: #f7ecf6;
+
+  /* Fontes */
+  --font-title: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-hand: "Caveat", "Segoe Script", cursive;
+
+  /* Bordas e sombras */
+  --radius-sm: 14px;
+  --radius: 22px;
+  --radius-lg: 30px;
+  --shadow-sm: 0 2px 10px rgba(11, 42, 91, 0.06);
+  --shadow: 0 14px 34px rgba(11, 42, 91, 0.10);
+
+  /* Altura do header (usada também no scroll suave) */
+  --header-h: 76px;
+}
+
+
+/* =========================================================
+   2. RESET E BASE
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;                 /* rolagem suave (reforçada pelo JS) */
+  scroll-padding-top: var(--header-h);     /* não deixa o header cobrir o título */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;             /* imagens nunca ultrapassam a tela */
+}
+
+h1, h2, h3, h4, p, ul, figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Foco visível para quem navega com o teclado */
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.container {
+  width: min(1160px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+/* Elementos que recebem foco pelo JavaScript (seções e título do resultado) não precisam de contorno */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 10px;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+
+/* =========================================================
+   3. COMPONENTES REUTILIZÁVEIS
+   ========================================================= */
+
+/* Ícones SVG de linha */
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.icon--sm {
+  width: 1.1rem;
+  height: 1.1rem;
+  stroke-width: 2.2;
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.btn--primary {
+  background: var(--green);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(15, 122, 85, 0.25);
+}
+.btn--primary:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(15, 122, 85, 0.32);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--line);
+}
+.btn--ghost:hover {
+  background: var(--blue-soft);
+  border-color: #c9dcf6;
+}
+.btn--lg {
+  padding: 1rem 1.9rem;
+}
+
+/* Cabeçalho de seção (título + texto centralizados) */
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+.section--soft {
+  background: var(--bg-soft);
+}
+.section__header {
+  max-width: 42rem;
+  margin: 0 auto 2.75rem;
+  text-align: center;
+}
+.section__header h2,
+.quiz-intro h2 {
+  font-family: var(--font-title);
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin-bottom: 0.9rem;
+}
+.section__header p {
+  color: var(--muted);
+}
+
+/* Etiqueta arredondada */
+.pill {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  padding: 0.25rem 0.95rem;
+  border-radius: 999px;
+  background: var(--mint-soft);
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   4. HEADER / NAVBAR
+   ========================================================= */
+.site-header {
+  position: sticky;            /* fica fixo no topo ao rolar */
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow 0.25s, border-color 0.25s;
+}
+/* Classe adicionada pelo JavaScript quando a página é rolada */
+.site-header.is-scrolled {
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.header__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: var(--header-h);
+}
+
+/* Logo */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.logo__icon {
+  width: 38px;
+  height: auto;
+}
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.logo__text strong {
+  font-family: var(--font-title);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--navy);
+}
+.logo__text small {
+  margin-top: 0.3rem;
+  padding-top: 0.28rem;
+  border-top: 2px solid var(--gold);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.logo--light .logo__text strong { color: var(--white); }
+.logo--light .logo__text small  { color: var(--mint); }
+
+/* Menu */
+.nav {
+  justify-self: center;
+}
+.nav__list {
+  display: flex;
+  gap: 2.25rem;
+}
+.nav__link {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 0;
+  font-weight: 500;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+.nav__link::after {          /* sublinhado animado */
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1rem;
+  width: 100%;
+  height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav__link:hover,
+.nav__link[aria-current="true"] {
+  color: var(--navy);
+}
+.nav__link:hover::after,
+.nav__link[aria-current="true"]::after {
+  transform: scaleX(1);
+}
+
+/* Botão hambúrguer (escondido no desktop) */
+.nav__toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.nav__toggle:hover {
+  background: var(--blue-soft);
+}
+.nav__bar {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--navy);
+  transition: transform 0.25s, opacity 0.25s;
+}
+/* Quando o menu está aberto, o hambúrguer vira um "X" */
+.nav__toggle[aria-expanded="true"] .nav__bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] .nav__bar:nth-child(2) { opacity: 0; }
+.nav__toggle[aria-expanded="true"] .nav__bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* Elemento visual de saúde no header */
+.header__tag {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: var(--navy);
+}
+.header__tag .icon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--green);
+  animation: batida 2.4s ease-in-out infinite;
+}
+@keyframes batida {          /* "batimento" discreto do coração */
+  0%, 60%, 100% { transform: scale(1); }
+  70%           { transform: scale(1.12); }
+  80%           { transform: scale(1); }
+  88%           { transform: scale(1.08); }
+}
+
+
+/* =========================================================
+   5. HERO
+   ========================================================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(70% 90% at 8% 30%, #e9f6f1 0%, #ffffff 70%);
+}
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  min-height: clamp(520px, 66vh, 660px);
+}
+.hero__content {
+  position: relative;
+  z-index: 2;                  /* fica acima da imagem */
+  max-width: 34rem;
+  padding-block: 3.5rem;
+}
+.hero__kicker {
+  margin-bottom: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--green);
+}
+.hero h1 {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 5.2vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin-bottom: 1.25rem;
+}
+.hero__text {
+  max-width: 30rem;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* Imagem do lado direito, com "esmaecido" na borda esquerda */
+.hero__media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+}
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+/* Frase decorativa sobre a imagem */
+.hero__slogan {
+  position: absolute;
+  right: 1.75rem;
+  bottom: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  line-height: 1.1;
+  color: var(--green);
+}
+.hero__slogan .icon {
+  color: var(--green);
+}
+
+
+/* =========================================================
+   6. SEÇÃO "POR QUE TER UMA VIDA SAUDÁVEL?"
+   ========================================================= */
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);      /* 4 colunas no desktop */
+  gap: 1.35rem;
+}
+.card {
+  border-radius: var(--radius);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.benefit {
+  padding: 2.1rem 1.5rem 2rem;
+  text-align: center;
+  background: var(--tone-soft);
+  border: 1px solid rgba(11, 42, 91, 0.05);
+}
+.benefit:hover {
+  transform: translateY(-8px);               /* animação no hover */
+  box-shadow: var(--shadow);
+}
+.benefit__icon {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  background: var(--tone);
+  color: var(--white);
+  transition: transform 0.28s ease;
+}
+.benefit__icon .icon {
+  width: 1.95rem;
+  height: 1.95rem;
+}
+.benefit:hover .benefit__icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+.benefit h3 {
+  margin-bottom: 0.6rem;
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+.benefit p {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* Cada card define sua própria cor */
+.benefit--food  { --tone: var(--food);  --tone-soft: var(--food-soft); }
+.benefit--move  { --tone: var(--move);  --tone-soft: var(--move-soft); }
+.benefit--sleep { --tone: var(--sleep); --tone-soft: var(--sleep-soft); }
+.benefit--mind  { --tone: var(--mind);  --tone-soft: var(--mind-soft); }
+
+
+/* =========================================================
+   7. SEÇÃO EQUIPE
+   ========================================================= */
+.team {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem 1.5rem;
+}
+.member {
+  text-align: center;
+}
+.member__photo {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;          /* foto circular */
+  border: 5px solid var(--white);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.member:hover .member__photo {
+  transform: scale(1.05);
+}
+.member__name {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+.member__role {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.2rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.member__role--green  { background: var(--mint-soft);  color: var(--green); }
+.member__role--blue   { background: var(--blue-soft);  color: #0b4a9c; }
+.member__role--purple { background: var(--sleep-soft); color: #3d4bb0; }
+.member__role--gold   { background: var(--gold-soft);  color: #7a5200; }
+
+
+/* =========================================================
+   8. QUIZ
+   ========================================================= */
+.quiz-section__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.quiz-intro {
+  align-self: start;           /* fica no topo, mesmo quando o resultado deixa o cartão mais alto */
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+  padding-top: 1.5rem;
+}
+.quiz-intro p:not(.pill):not(.handwritten) {
+  max-width: 28rem;
+  color: var(--muted);
+}
+.handwritten {
+  margin-top: 1.75rem;
+  font-family: var(--font-hand);
+  font-size: 1.9rem;
+  line-height: 1.1;
+  color: var(--green);
+  transform: rotate(-3deg);
+  transform-origin: left;
+}
+
+/* Cartão do quiz */
+.quiz-card {
+  padding: clamp(1.25rem, 3vw, 2.1rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+/* Barra de progresso (usada no quiz e no resultado) */
+.quiz__top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.progress {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8eef5;
+}
+.progress__bar {
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--green), var(--mint));
+  transition: width 0.45s ease;
+}
+
+/* Pergunta e opções */
+.quiz__fieldset {
+  min-width: 0;
+  margin: 1.6rem 0 1rem;
+  padding: 0;
+  border: 0;
+}
+.quiz__question {
+  margin-bottom: 1.1rem;
+  padding: 0;
+  font-family: var(--font-title);
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--navy);
+}
+.options {
+  display: grid;
+  gap: 0.65rem;
+}
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #f7fafc;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+.option:hover {
+  border-color: #b9cde6;
+  background: var(--white);
+}
+/* O radio de verdade fica escondido (mas continua acessível pelo teclado) */
+.option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.option__mark {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border: 2px solid #aebdd1;
+  border-radius: 50%;
+  background: var(--white);
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.option input:checked + .option__mark {
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: inset 0 0 0 4px var(--white);
+}
+.option:has(input:checked) {
+  border-color: var(--green);
+  background: var(--mint-soft);
+}
+.option:has(input:focus-visible) {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+.option__text {
+  font-size: 0.97rem;
+  font-weight: 500;
+}
+
+/* Estado de erro (usuário tentou avançar sem responder) */
+.options.has-error .option {
+  border-color: var(--gold);
+}
+.options.has-error {
+  animation: tremer 0.35s ease;
+}
+@keyframes tremer {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-6px); }
+  75%      { transform: translateX(6px); }
+}
+
+.quiz__message {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: var(--gold-soft);
+  color: #6b4700;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.quiz__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.quiz__actions .btn--primary {
+  margin-left: auto;           /* mantém o botão "Próxima" à direita */
+}
+.quiz__note {
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Resultado */
+.result__title {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.result__title:focus {
+  outline: none;
+}
+.result__summary {
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+}
+.result__score {
+  margin-bottom: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+}
+.result__score-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.result__score-top strong {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--navy);
+}
+.result__focus {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Lista de áreas */
+.areas {
+  display: grid;
+  gap: 0.75rem;
+}
+.area {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-left-width: 5px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+.area--atencao  { border-left-color: var(--gold); }
+.area--melhorar { border-left-color: var(--blue); }
+.area--bom      { border-left-color: var(--mint); }
+
+.area__emoji {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  font-size: 1.4rem;
+}
+.area__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.7rem;
+  margin-bottom: 0.15rem;
+}
+.area__name {
+  font-family: var(--font-title);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+.badge {
+  padding: 0.1rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.badge--atencao  { background: var(--gold-soft); color: #7a5200; }
+.badge--melhorar { background: var(--blue-soft); color: #0b4a9c; }
+.badge--bom      { background: var(--mint-soft); color: var(--green); }
+
+.area__text {
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+
+.disclaimer {
+  margin: 1.25rem 0;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  background: #f1f6fb;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+.disclaimer strong {
+  color: var(--navy);
+}
+
+
+/* =========================================================
+   9. FOOTER
+   ========================================================= */
+.site-footer {
+  padding: 3rem 0 1.5rem;
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.85);
+}
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+}
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.9rem;
+}
+.footer__links a {
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+.footer__links a:hover {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.footer__social {
+  display: flex;
+  gap: 0.75rem;
+}
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.footer__social a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.site-footer :focus-visible {
+  outline-color: var(--gold);
+}
+
+
+/* =========================================================
+   10. ANIMAÇÕES DE ENTRADA AO ROLAR
+   A classe "js" é colocada no <html> pelo script.js.
+   Assim, sem JavaScript, o conteúdo continua visível.
+   ========================================================= */
+.js .reveal {
+  opacity: 0;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  animation: entrada 0.7s ease backwards;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(18px); }
+}
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .reveal { opacity: 1; }
+}
+
+
+/* =========================================================
+   11. RESPONSIVIDADE
+   ========================================================= */
+
+/* Notebook / tablet grande: esconde a frase do header */
+@media (max-width: 1080px) {
+  .header__tag {
+    display: none;
+  }
+  .header__inner {
+    grid-template-columns: auto 1fr;
+  }
+  .nav {
+    justify-self: end;
+  }
+}
+
+/* Tablet */
+@media (max-width: 960px) {
+  .benefits {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .quiz-section__inner {
+    grid-template-columns: 1fr;
+  }
+  .quiz-intro {
+    position: static;
+    padding-top: 0;
+    text-align: center;
+  }
+  .quiz-intro p:not(.pill):not(.handwritten) {
+    margin-inline: auto;
+  }
+  .handwritten {
+    transform-origin: center;
+  }
+}
+
+/* Celular e tablet pequeno: menu hambúrguer + hero em coluna */
+@media (max-width: 860px) {
+  :root {
+    --header-h: 68px;
+  }
+
+  /* --- Menu mobile --- */
+  .nav__toggle {
+    display: flex;
+  }
+  .nav__list {
+    display: none;                         /* escondido até clicar no hambúrguer */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 1.25rem 1.25rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+  .nav__list.is-open {
+    display: flex;
+    animation: entrada 0.25s ease;
+  }
+  .nav__link {
+    display: block;
+    padding: 0.95rem 0.25rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.05rem;
+  }
+  .nav__list li:last-child .nav__link {
+    border-bottom: 0;
+  }
+  .nav__link::after {
+    display: none;
+  }
+  .nav__link[aria-current="true"] {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* --- Hero em coluna --- */
+  .hero__inner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .hero__content {
+    max-width: none;
+    padding-block: 2.5rem 1.5rem;
+  }
+  .hero__media {
+    position: relative;
+    width: 100vw;                          /* a imagem ocupa a largura toda da tela */
+    margin-left: calc(50% - 50vw);
+    height: 340px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 28%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 28%);
+  }
+  .hero__slogan {
+    right: auto;
+    left: 1rem;
+    bottom: 1rem;
+    font-size: 1.3rem;
+  }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 1.5rem);            /* quiz e conteúdo ocupam quase toda a largura */
+  }
+  .logo__text strong {
+    font-size: 1.25rem;
+  }
+  .benefits {
+    grid-template-columns: 1fr;            /* cards em uma coluna */
+  }
+  .benefit {
+    padding: 1.6rem 1.25rem;
+  }
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem 0.75rem;
+  }
+  .member__photo {
+    width: 116px;
+    height: 116px;
+  }
+  .member__name {
+    font-size: 1.02rem;
+  }
+  .btn--lg {
+    width: 100%;
+  }
+  .quiz-card {
+    padding: 1.15rem;
+    border-radius: var(--radius);
+  }
+  .quiz__actions .btn {
+    padding-inline: 1.2rem;
+  }
+  .footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Celulares bem pequenos */
+@media (max-width: 380px) {
+  .team {
+    grid-template-columns: 1fr;
+  }
+  .hero__media {
+    height: 280px;
+  }
+}
