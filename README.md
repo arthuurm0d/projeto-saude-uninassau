@@ -76,20 +76,13 @@ Para mudar perguntas, respostas ou pontuação, edite o array `perguntas` em `js
 
 | Nome | Função |
 |------|--------|
-|ARTHUR MARQUES | UX/UI |
-| JOÃO VICTOR | Front-end |
-| BRUNO | Conteúdo |
+|ARTHUR MARQUES | BACK-END |
+| JOÃO VICTOR | FRONT-END |
+| BRUNO | UX/UI DESIGN |
 
 
 
-## Como executar
 
-Não é preciso instalar nada:
-
-1. Baixe ou clone o repositório.
-2. Abra o arquivo `index.html` no navegador **ou** use a extensão **Live Server** do VS Code (clique com o botão direito em `index.html` → *Open with Live Server*).
-
-> Observação: as fontes vêm do Google Fonts, então é necessário estar conectado à internet para vê-las. Sem internet, o site usa fontes alternativas do sistema.
 
 ## GitHub
 
@@ -97,4 +90,4 @@ Repositório: _(cole aqui o link do repositório)_
 
 ## Créditos
 
-Projeto acadêmico, sem fins comerciais. Logo, ilustrações e avatares foram criados em SVG para este trabalho.
+Projeto acadêmico
