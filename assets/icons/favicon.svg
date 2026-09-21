@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 56" role="img" aria-label="Logo Saúde em Foco">
+  <path d="M24 2 44 9v18c0 13-9 23-20 27C13 50 4 40 4 27V9Z" fill="#0b2a5b"/>
+  <path d="M24 2 44 9v6L24 8 4 15V9Z" fill="#f2b632"/>
+  <path d="M11 30h8l3-9 5 17 3-8h7" fill="none" stroke="#3ecf9b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="24" cy="45" r="1.8" fill="#ffffff" opacity=".8"/>
+</svg>
