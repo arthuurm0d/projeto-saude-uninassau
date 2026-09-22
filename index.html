@@ -6,7 +6,7 @@
   <title>UNINASSAU — Saúde em Foco</title>
   <meta name="description" content="Projeto educacional da UNINASSAU sobre hábitos saudáveis: alimentação, movimento, sono e saúde mental, com um quiz interativo para você refletir sobre a sua rotina.">
   <meta name="theme-color" content="#0b2a5b">
-  <link rel="icon" href="assets/icons/image.png" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/image.png" type="image/png">
 
   <!-- Fontes do Google Fonts (Outfit = títulos | Plus Jakarta Sans = textos | Caveat = frases manuscritas) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,7 +88,7 @@
           </a>
         </div>
 
-        <!-- IMAGEM DO HERO: para usar uma foto real, coloque em assets/images/ e troque o "src" -->
+        <!-- IMAGEM DO HERO: para usar uma foto real -->
         <figure class="hero__media">
           <img src="assets/icons/hero.png" width="900" height="760"
                alt="Pessoa de costas, com os braços abertos, em um parque ensolarado">
@@ -152,8 +152,6 @@
 
     <!-- =====================================================
          4. CONHEÇA NOSSA EQUIPE
-         Para trocar nomes, funções e fotos, edite apenas os
-         trechos marcados com "EDITE AQUI" abaixo.
          ===================================================== -->
     <section class="section section--soft" id="equipe" aria-labelledby="equipe-titulo">
       <div class="container">
@@ -166,7 +164,7 @@
           <!-- Integrante 1 -->
           <article class="member reveal" style="--delay: 80ms">
             <img class="member__photo" src="assets/images/equipe-arthur.png" width="400" height="400"
-                 alt="Foto de arthur ">
+                 alt="Foto de Arthur Marques">
             <h3 class="member__name">ARTHUR MARQUES</h3>
             <p class="member__role member__role--blue">BACK-END</p>
           </article>
@@ -174,7 +172,7 @@
           <!-- Integrante 2 -->
           <article class="member reveal" style="--delay: 80ms">
             <img class="member__photo" src="assets/images/equipe-joaovictor.png" width="400" height="400"
-                 alt="Foto de Lucas Lima">
+                 alt="Foto de João Victor">
             <h3 class="member__name">JOÃO VICTOR</h3>
             <p class="member__role member__role--blue">FRONT-END</p>
           </article>
@@ -182,10 +180,12 @@
           <!-- Integrante 3 -->
           <article class="member reveal" style="--delay: 160ms">
             <img class="member__photo" src="assets/images/equipe.bruno.png" width="400" height="400"
-                 alt="assets/images/equipe.bruno.png">
-            <h3 class="member__name">BRUNO OTAVIO</h3>
+                 alt="Foto de Bruno Otávio">
+            <h3 class="member__name">BRUNO OTÁVIO</h3>
             <p class="member__role member__role--purple">UX/UI DESIGN</p>
           </article>
+        </div>
+      </div>
     </section>
 
     <!-- =====================================================
@@ -215,7 +215,7 @@
 
           <!-- Tela das perguntas (preenchida pelo JavaScript) -->
           <div id="quiz-panel">
-            <div class="quiz__top">
+            <div class="quiz__top" aria-live="polite" aria-atomic="true">
               <span id="quiz-step">Pergunta 1 de 8</span>
               <span id="quiz-percent">0%</span>
             </div>
@@ -227,7 +227,7 @@
             <!-- novalidate: a validação é feita por nós no JavaScript, com mensagem amigável -->
             <form id="quiz-form" novalidate>
               <fieldset class="quiz__fieldset">
-                <legend id="quiz-question" class="quiz__question"></legend>
+                <legend id="quiz-question" class="quiz__question" aria-live="polite"></legend>
                 <div class="options" id="quiz-options"></div>
               </fieldset>
 
@@ -295,7 +295,6 @@
         </ul>
       </nav>
 
-      <!-- aa -->
       <ul class="footer__social" aria-label="Redes sociais">
         <li>
           <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -320,5 +319,21 @@
       <p>Conteúdo educativo. Não substitui orientação profissional de saúde.</p>
     </div>
   </footer>
+
+  <!-- =====================================================
+       VLIBRAS — Tradutor de Libras (acessibilidade)
+       Implementação oficial recomendada pelo governo federal
+       (https://vlibras.gov.br).
+       ===================================================== -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 </body>
 </html>

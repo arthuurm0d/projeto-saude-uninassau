@@ -546,11 +546,14 @@ a {
    7. SEÇÃO EQUIPE
    ========================================================= */
 .team {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.25rem 2.5rem;
 }
 .member {
+  flex: 0 1 220px;
+  max-width: 220px;
   text-align: center;
 }
 .member__photo {
@@ -980,8 +983,8 @@ a {
   .benefits {
     grid-template-columns: repeat(2, 1fr);
   }
-  .team {
-    grid-template-columns: repeat(2, 1fr);
+  .member {
+    flex-basis: 45%;
   }
   .quiz-section__inner {
     grid-template-columns: 1fr;
@@ -1083,8 +1086,10 @@ a {
     padding: 1.6rem 1.25rem;
   }
   .team {
-    grid-template-columns: repeat(2, 1fr);
     gap: 1.75rem 0.75rem;
+  }
+  .member {
+    flex-basis: 45%;
   }
   .member__photo {
     width: 116px;
@@ -1111,8 +1116,8 @@ a {
 
 /* Celulares bem pequenos */
 @media (max-width: 380px) {
-  .team {
-    grid-template-columns: 1fr;
+  .member {
+    flex-basis: 100%;
   }
   .hero__media {
     height: 280px;
